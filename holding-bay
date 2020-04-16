@@ -1,0 +1,7 @@
+DROP TYPE IF EXISTS
+  class_skills,
+  class_clatters,
+  class_tempers,
+  class_wishes,
+  class_name,
+  class_attributes;

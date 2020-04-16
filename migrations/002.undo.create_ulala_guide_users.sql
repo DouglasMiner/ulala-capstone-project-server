@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS ulala_guide_users;
