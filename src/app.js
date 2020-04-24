@@ -3,7 +3,10 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
-const { NODE_ENV } = require('./config')
+const { NODE_ENV } = require('./config');
+const { requireAuth } = require('./middleware/basic-auth');
+const loginRouter = require('./routers/login-router');
+const usersRouter = require('./routers/users-router');
 
 const app = express();
 
@@ -19,6 +22,14 @@ app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
 
+app.use('/Login', loginRouter);
+
+
+
+app.use('/UserBuilds', requireAuth, usersRouter);
+
+
+// eslint-disable-next-line no-unused-vars
 app.use(function errorHandle(error, req, res, next) {
   let response;
   if (NODE_ENV === 'production') {
